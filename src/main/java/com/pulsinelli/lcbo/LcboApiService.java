@@ -4,13 +4,8 @@ import com.pulsinelli.lcbo.domain.Inventory;
 import com.pulsinelli.lcbo.domain.LcboResponse;
 import com.pulsinelli.lcbo.domain.Product;
 import com.pulsinelli.lcbo.domain.Store;
-import retrofit.ErrorHandler;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.http.Path;
-
-import javax.xml.ws.http.HTTPException;
 
 public class LcboApiService implements LcboApi {
 
@@ -37,6 +32,10 @@ public class LcboApiService implements LcboApi {
 
     public LcboResponse<Product> getProductById(int productId) {
         return lcboApi.getProductById(productId);
+    }
+
+    public LcboResponse<Store> getStoresBySearchQuery(String searchQuery) {
+        return lcboApi.getStoresBySearchQuery(searchQuery);
     }
 
     private static class TokenInterceptor implements RequestInterceptor {

@@ -61,10 +61,10 @@ public class SuggestionController extends HttpServlet {
             indexToTry = new Random().nextInt(idsOfBeersNotYetTried.size());
             lcboBeerIdToTry = idsOfBeersNotYetTried.get(indexToTry);
             try {
-                inventoryLcboResponse = lcboApiService.getProductInventoryForStore(lcboBeerIdToTry, 511);
+                // TODO: get the lcbo store id of the user to get the product inventory
+                inventoryLcboResponse = lcboApiService.getProductInventoryForStore(lcboBeerIdToTry, 511);   // FIXME
                 inventory = inventoryLcboResponse.result;
             } catch (RetrofitError re) {
-                // TODO: do something...
                 idsOfBeersNotYetTried.remove(indexToTry);
                 indexToTry = null;
                 continue;

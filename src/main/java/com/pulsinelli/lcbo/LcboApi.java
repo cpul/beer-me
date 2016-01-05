@@ -14,4 +14,7 @@ public interface LcboApi {
 
     @GET("/products/{product_id}")
     LcboResponse<Product> getProductById(@Path("product_id") int productId);
+
+    @GET("/stores?q={query}")
+    LcboResponse<Store> getStoresBySearchQuery(@Path("query") String searchQuery);
 }

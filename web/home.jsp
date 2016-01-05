@@ -44,6 +44,16 @@
                 <c:if test="${not empty triedBeers}">
                     <h4>Looks like you're ready for another! You know what to click...</h4>
                 </c:if>
+
+                <c:choose>
+                    <c:when test="${not empty homeStore}">
+                        <p>Your current store is %STORE%. Would you like to <a role="button" href="#" data-toggle="modal" data-target="#store-select-dialog">change your store?</a></p>
+                    </c:when>
+                    <c:otherwise>
+                        <p>Your currently don't have a store set. Please <a role="button" href="#" data-toggle="modal" data-target="#store-select-dialog">select your store.</a></p>
+                    </c:otherwise>
+                </c:choose>
+
             </div>
         </div>
         <div class="row">
@@ -51,6 +61,34 @@
                 <p class="text-center">
                     <a class="btn btn-primary btn-lg btn-block" href="${pageContext.request.contextPath}/try-me" role="button">Beer Me!</a>
                 </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>Your Latest Beers That You Tried</h3>
+                <div class="row">
+                    <c:choose>
+                        <c:when test="${not empty latestTriedBeers}">
+                            <c:set var="latestBeersCounter" value="0" scope="page"/>
+                            <ol>
+                                <c:forEach var="b" items="${latestTriedBeers}">
+                                    <c:if test="${latestBeersCounter < 10}">
+                                        <li>${b.beerName} - ${b.triedOn}</li>
+                                    </c:if>
+                                    <c:set var="latestBeersCounter" value="${latestBeersCounter + 1}" scope="page"/>
+                                </c:forEach>
+                            </ol>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Looks like you haven't tried any yet. What are you waiting for?</p>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <hr>
             </div>
         </div>
         <div class="row">
@@ -84,6 +122,47 @@
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="store-select-dialog" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Select Your LCBO Retail Store</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h5>Search for Nearby Stores</h5>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Yonge & Queen">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Find stores</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Store results -->
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <h5>Store Results</h5>
+                            <div class="list-group">
+                                <a class="list-group-item" href="#" id="STORE_ID">
+                                    <h4 class="list-group-item-heading">LCBO Yonge & Queen</h4>
+                                    <p class="list-group-item-text">Yonge St. and Queen St.</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

@@ -1,8 +1,10 @@
 package com.pulsinelli.lcbo.services;
 
 import com.pulsinelli.lcbo.model.User;
+import com.pulsinelli.lcbo.model.UserTriedBeer;
 import com.pulsinelli.lcbo.util.DbUtil;
 
+import javax.jws.soap.SOAPBinding;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
@@ -33,6 +35,28 @@ public class BeerService {
         }
 
         return beerIds;
+    }
+
+    public ArrayList<UserTriedBeer> getBeersUserTried(final User user) {
+        ArrayList<UserTriedBeer> userTriedBeers = new ArrayList<UserTriedBeer>();
+
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM beers_user_tried WHERE uid = ? ORDER BY tried_on_date DESC");
+            statement.setInt(1, user.getId());
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet != null) {
+                while (resultSet.next()) {
+                    UserTriedBeer temp = new UserTriedBeer(resultSet.getInt("bid"), resultSet.getInt("uid"), resultSet.getDate("tried_on_date"));
+                    userTriedBeers.add(temp);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userTriedBeers;
     }
 
     public boolean hasBeerBeenTriedBefore(final User user, final Integer bid) {

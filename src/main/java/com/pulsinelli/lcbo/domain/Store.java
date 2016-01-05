@@ -2,9 +2,6 @@ package com.pulsinelli.lcbo.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by cpulsinelli on 15-12-11.
- */
 public class Store {
 
     @SerializedName("address_line_1")
@@ -130,9 +127,174 @@ public class Store {
     @SerializedName("updated_at")
     public String updatedAt;
 
+    public String getAddress1() {
+        return address1;
+    }
 
+    public String getAddress2() {
+        return address2;
+    }
 
+    public String getCity() {
+        return city;
+    }
 
+    public String getFax() {
+        return fax;
+    }
 
+    public Boolean getHasBeerColdRoom() {
+        return hasBeerColdRoom;
+    }
 
+    public Boolean getHasBilingualServices() {
+        return hasBilingualServices;
+    }
+
+    public Boolean getHasParking() {
+        return hasParking;
+    }
+
+    public Boolean getHasProductConsultant() {
+        return hasProductConsultant;
+    }
+
+    public Boolean getHasSpecialOccasionPermits() {
+        return hasSpecialOccasionPermits;
+    }
+
+    public Boolean getHasTaskingBar() {
+        return hasTaskingBar;
+    }
+
+    public Boolean getHasTransitAccess() {
+        return hasTransitAccess;
+    }
+
+    public Boolean getHasVintagesCorner() {
+        return hasVintagesCorner;
+    }
+
+    public Boolean getHasWheelchairAccessability() {
+        return hasWheelchairAccessability;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public Integer getInventoryCount() {
+        return inventoryCount;
+    }
+
+    public Integer getInventoryPriceInCents() {
+        return inventoryPriceInCents;
+    }
+
+    public Integer getInventoryVolumeInMilliliters() {
+        return inventoryVolumeInMilliliters;
+    }
+
+    public Boolean getIsDead() {
+        return isDead;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public Integer getProductsCount() {
+        return productsCount;
+    }
+
+    /**
+     * Not used by the lcboapi anymore - reply on {@link #getId()} instead
+     * @return store number
+     *
+     * @deprecated use {@link #getId()} instead
+     */
+    @Deprecated
+    public Integer getStoreNumber() {
+        return storeNumber;
+    }
+
+    public Integer getSundayClose() {
+        return sundayClose;
+    }
+
+    public Integer getMondayClose() {
+        return mondayClose;
+    }
+
+    public Integer getTuesdayClose() {
+        return tuesdayClose;
+    }
+
+    public Integer getWednesdayClose() {
+        return wednesdayClose;
+    }
+
+    public Integer getThursdayClose() {
+        return thursdayClose;
+    }
+
+    public Integer getFridayClose() {
+        return fridayClose;
+    }
+
+    public Integer getSaturdayClose() {
+        return saturdayClose;
+    }
+
+    public Integer getSundayOpen() {
+        return sundayOpen;
+    }
+
+    public Integer getMondayOpen() {
+        return mondayOpen;
+    }
+
+    public Integer getTuesdayOpen() {
+        return tuesdayOpen;
+    }
+
+    public Integer getWednesdayOpen() {
+        return wednesdayOpen;
+    }
+
+    public Integer getThursdayOpen() {
+        return thursdayOpen;
+    }
+
+    public Integer getFridayOpen() {
+        return fridayOpen;
+    }
+
+    public Integer getSaturdayOpen() {
+        return saturdayOpen;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
 }

@@ -2,9 +2,6 @@ package com.pulsinelli.lcbo.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by cpulsinelli on 15-12-11.
- */
 public class Inventory {
 
     @SerializedName("product_id")

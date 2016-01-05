@@ -4,6 +4,7 @@ import com.pulsinelli.lcbo.LcboApiService;
 import com.pulsinelli.lcbo.domain.LcboResponse;
 import com.pulsinelli.lcbo.domain.Product;
 import com.pulsinelli.lcbo.model.User;
+import com.pulsinelli.lcbo.model.UserTriedBeer;
 import com.pulsinelli.lcbo.services.BeerService;
 import com.pulsinelli.lcbo.util.LcboUtil;
 import retrofit.RetrofitError;
@@ -53,7 +54,12 @@ public class HomeController extends HttpServlet {
         req.setAttribute("user", user);
         ArrayList<Integer> triedBeerIds =  beerService.getProductIdsOfTriedBeers(user);
         ArrayList<Product> triedBeers = getBeersForProductIds(triedBeerIds);
+
+        ArrayList<UserTriedBeer> latestUserTriedBeers = beerService.getBeersUserTried(user);
+        getListOfLatestTriedBeers(latestUserTriedBeers);
+
         req.setAttribute("triedBeers", triedBeers);
+        req.setAttribute("latestTriedBeers", latestUserTriedBeers);
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/home.jsp");
         dispatcher.forward(req, resp);
@@ -70,6 +76,17 @@ public class HomeController extends HttpServlet {
             beers.add(p);
         }
         return beers;
+    }
+
+    private void getListOfLatestTriedBeers(ArrayList<UserTriedBeer> triedBeers) {
+
+        for (int i = 0; i < triedBeers.size(); i++) {
+            int bid = triedBeers.get(i).getBid();
+            int lcboProductId = beerService.getLcboProductIdForBeerId(bid);
+            LcboResponse<Product> response = lcboApiService.getProductById(lcboProductId);
+            Product p = response.result;
+            triedBeers.get(i).setBeerName(p.getName());
+        }
     }
 
 }

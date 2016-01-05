@@ -6,9 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by cpulsinelli on 15-12-11.
- */
 public class Product {
 
     @SerializedName("alcohol_content")
